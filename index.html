@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script defer src="face-api.min.js"></script>
+  <script defer src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/body-pix@2.0"></script>
+  <style>
+    #container {
+      margin: 0;
+      padding: 0;
+      width: 500px;
+      height: 375px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    canvas {
+      position: absolute;
+    }
+
+    #box {
+      width: 239px;
+      height: 306px;
+      position: absolute;
+      background-image: url("paper.png");
+      background-repeat: no-repeat;
+      /*background-size: 450px 325px;*/
+    }
+  </style>
+</head>
+<body>
+  <div>
+  <div id="container">
+  <div id="box"></div>
+  <video id="video" width="500" height="375" autoplay muted></video>
+  </div>
+  <button type="button" id="button" disabled>Click to take picture</button>
+  <input type="text" id="label" value="" style="border:none">
+  </div>
+  <div id="screenshot">
+    <img src="" style="display: none">
+  </div>
+  <div>
+	  <canvas id="threshold-canvas" style="visibility: hidden; display: none;"></canvas>
+	  <canvas id="t3-canvas" style="visibility: hidden; display: none;"></canvas>
+	  <div class="col">
+		<p style="visibility: hidden; display: none;">Threshold: <input id="range-threshold" type="range" value=127 min=0 max=255 style="visibility:hidden; display: none;"></p>
+		<p style="visibility: hidden; display: none;">Brightness: <input id="range-brightness" type="range" value=50 min=0 max=100 style="visibility:hidden; display: none;"></p>
+		<p style="visibility: hidden; display: none;">Samples above threshold: <span id="samples"></span></p>
+		<p style="visibility: hidden; display: none;">Samples above underexposed: <span id="samples-under"></span></p>
+		<p style="visibility: hidden; display: none;">Samples above overexposed: <span id="samples-over"></span></p>
+	  </div>
+	  <div class="col">
+		<p style="visibility: hidden; display: none;">Average color:</p>
+		<canvas id="brightness-canvas" style="visibility: hidden; display: none;"></canvas>
+		<p style="visibility: hidden; display: none;">Average brightness: <span id="avg-brightness"></span></p>
+	  </div>
+	</div>  
+</body>
+</html>
